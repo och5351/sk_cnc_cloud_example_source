@@ -1,10 +1,10 @@
 package com.skcnc.backend.controller;
 
+import com.skcnc.backend.dto.CrawlerRequest;
 import com.skcnc.backend.service.CrawlerService;
 
 import java.io.IOException;
 
-import com.skcnc.backend.model.request.CrawlerRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
