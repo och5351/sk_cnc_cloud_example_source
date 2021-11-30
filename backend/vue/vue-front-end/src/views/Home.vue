@@ -1,13 +1,13 @@
 <template>
   <div id="app" class="container">
     <!--로그인-->
-    <signInPage />
-    <!-- 배너 부분 링크 문제 해결해야함 -->
-    <div class="row">
-      <!-- TODO: 리스트 CSS 수정 -->
-      <!-- 공지사항 박스 -->
+    <div v-if="this.$store.getters.getToken==null">
+      <signInPage />
     </div>
-
+    <div v-else>
+      <!--메인 페이지-->
+      <mainPage />
+    </div>
     <!-- Footer -->
     <categoryFooter />
   </div>
@@ -17,47 +17,25 @@
 /* eslint-disable */
 import signInPage from "../components/Sign/login.vue";
 import categoryFooter from "../components/Board/CategoryFooter.vue";
+import mainPage from './Main.vue'
 
 export default {
   data() {
     return {
-      notice: Object,
-      recent: Object,
-      hot: Object,
-      mySession: false
+      mySession: false,
     };
   },
   components: {
     signInPage,
-    categoryFooter
+    categoryFooter,
+    mainPage,
   },
-  methods: {
-    login: function() {
-      this.$router.push({
-        path: "/login",
-        query: { redirect: this.$route.fullPath }
-      });
-    },
-    // 로그아웃 시 세션 삭제 후 새로 고침
-    logout: function() {
-      this.$session.destroy();
-      location.reload();
-    },
-    Mypage: function() {
-      this.$router.push("/Mypage");
-    }
+  methods() {
+
   },
   mounted() {
-    // Load notice / 공지사항 불러오기
-    this.$http.get("/api/article/notice").then(res => {
-      this.notice = res.data;
-    });
-    this.$http.get("/api/article/new").then(res => {
-      this.recent = res.data;
-    });
-    this.$http.get("/api/article/hot").then(res => {
-      this.hot = res.data;
-    });
+    console.log(this.$store.getters.getToken);
+    this.$store.dispatch('tokenCheck', this.$store.getters.getToken)
   }
 };
 </script>
@@ -76,20 +54,6 @@ export default {
 }
 #banner {
   margin-top: 10px;
-}
-
-#notice {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  margin-top: 10px;
-  padding: 7px;
-  height: 250px;
-  align-self: auto;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#first_line {
-  margin-bottom: 30px;
 }
 
 .footer {
@@ -114,8 +78,4 @@ export default {
   margin-bottom: 20px;
 }
 
-.ad {
-  margin-top: 10px;
-  height: 250px;
-}
 </style>

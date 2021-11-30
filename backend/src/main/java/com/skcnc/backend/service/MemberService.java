@@ -7,6 +7,7 @@ import com.skcnc.backend.dto.IdCheckRequest;
 import com.skcnc.backend.dto.JwtRequest;
 import com.skcnc.backend.dto.JwtResponse;
 import com.skcnc.backend.dto.SignUpRequest;
+import com.skcnc.backend.dto.TokenCheckRequest;
 import com.skcnc.backend.repository.MemberRepository;
 import com.skcnc.backend.security.JwtTokenProvider;
 import com.skcnc.backend.security.UserDetailsImpl;
@@ -29,18 +30,31 @@ public class MemberService {
     private final JwtTokenProvider jwtTokenProvider;
 
     public JwtResponse signIn(JwtRequest request) throws Exception {
+        System.out.println(request.getId());
+        System.out.println(request.getPassword());
+        System.out.println(authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(request.getId(),
+                        request.getPassword())));
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(request.getId(),
                         request.getPassword()));
 
         return createJwtToken(authentication);
+    }
 
+    public Boolean tokenCheck(TokenCheckRequest request) {
+        if (!jwtTokenProvider.validateToken(request.getAccessToken())) {
+            // throw new RuntimeException("토큰이 만료되었습니다.");
+            return false;
+        }
+
+        return true;
     }
 
     private JwtResponse createJwtToken(Authentication authentication) {
         UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();
-
         String token = jwtTokenProvider.generateToken(principal);
+
         return new JwtResponse(token);
     }
 

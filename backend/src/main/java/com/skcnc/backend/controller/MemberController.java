@@ -4,15 +4,19 @@ import com.skcnc.backend.dto.IdCheckRequest;
 import com.skcnc.backend.dto.JwtRequest;
 import com.skcnc.backend.dto.JwtResponse;
 import com.skcnc.backend.dto.SignUpRequest;
+import com.skcnc.backend.dto.TokenCheckRequest;
 import com.skcnc.backend.service.MemberService;
 import lombok.AllArgsConstructor;
 
 import org.json.simple.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,6 +32,11 @@ public class MemberController {
         } catch (Exception e) {
             return new JwtResponse(e.getMessage());
         }
+    }
+
+    @PostMapping(value = "/tokenCheck", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> tokenCheck(@RequestBody TokenCheckRequest request) {
+        return ResponseEntity.ok(memberService.tokenCheck(request));
     }
 
     @PostMapping(value = "/idCheck", produces = MediaType.APPLICATION_JSON_VALUE)

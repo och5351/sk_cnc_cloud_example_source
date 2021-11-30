@@ -16,6 +16,9 @@
 <script>
 export default {
   name: "App",
+  created(){
+    
+  },
   methods: {
     main: function() {
       this.$router.push("/");
@@ -44,21 +47,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #42b983;
-  margin-top: 60px;
-  margin-right: 150px;
-  margin-left: 150px;
+  /* margin-top: 60px; */
+  /* margin-right: 150px;
+  margin-left: 150px; */
 }
-.loginbox {
-  width: 150px;
-  vertical-align: middle;
-  float: right;
-}
-.trueLogin {
-  width: 50px;
-  vertical-align: middle;
-  float: right;
-}
-.link,
 .logo {
   cursor: pointer;
 }

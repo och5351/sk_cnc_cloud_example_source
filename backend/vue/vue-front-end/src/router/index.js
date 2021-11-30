@@ -17,31 +17,10 @@ const routes = [
 		},
 	},
 	{
-		path: '/admin/:systemMenu',
-		name: 'admin',
-		component: function () {
-			return import('../views/AdminConsole.vue');
-		},
-	},
-	{
-		path: '/board/:categoryName',
-		name: 'board',
-		component: function () {
-			return import('../views/BoardView.vue');
-		},
-	},
-	{
 		path: '/article/:contentId',
 		name: 'Article',
 		component: function () {
 			return import('../views/Article.vue');
-		},
-	},
-	{
-		path: '/post',
-		name: 'Posting',
-		component: function () {
-			return import('../views/PostMain.vue');
 		},
 	},
 	{
@@ -51,16 +30,16 @@ const routes = [
 			return import('../views/Mypage.vue');
 		},
 	},
-	{
-		path: '/login',
-		name: 'login',
-		component: login,
-	},
-	{
-		path: '/signup',
-		name: 'SignUp',
-		component: SignUp,
-	},
+	// {
+	// 	path: '/login',
+	// 	name: 'login',
+	// 	component: login,
+	// },
+	// {
+	// 	path: '/signup',
+	// 	name: 'SignUp',
+	// 	component: SignUp,
+	// },
 ];
 
 const router = new VueRouter({
