@@ -16,9 +16,6 @@
 <script>
 export default {
   name: "App",
-  created(){
-    
-  },
   methods: {
     main: function() {
       this.$router.push("/");

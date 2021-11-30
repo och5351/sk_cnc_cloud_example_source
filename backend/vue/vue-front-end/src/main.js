@@ -23,5 +23,8 @@ Vue.prototype.$http = http;
 new Vue({
 	router,
 	store,
+	name: "VueCare",
+	posts: [],
+	term: "",
 	render: v => v(App),
 }).$mount('#app');

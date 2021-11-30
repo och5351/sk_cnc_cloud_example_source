@@ -1,12 +1,14 @@
 <template>
   <div id="app" class="container">
+    <div id="main">
     <!--로그인-->
-    <div v-if="this.$store.getters.getToken==null">
-      <signInPage />
-    </div>
-    <div v-else>
+      <div v-if="this.$store.getters.getToken==null">
+        <signInPage />
+      </div>
+      <div v-else>
       <!--메인 페이지-->
-      <mainPage />
+        <mainPage />
+      </div>
     </div>
     <!-- Footer -->
     <categoryFooter />
@@ -52,30 +54,10 @@ export default {
   margin-left: 0px;
   margin-bottom: 150px;
 }
-#banner {
-  margin-top: 10px;
-}
 
 .footer {
-  margin-top: 60px;
+  margin-top: 100px;
   color: black;
-}
-
-.loginbutton {
-  margin-top: 10px;
-  width: 250px;
-  height: 70px;
-}
-
-.trueLogin {
-  width: 50px;
-  vertical-align: middle;
-  float: right;
-}
-
-.hottopic {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 </style>

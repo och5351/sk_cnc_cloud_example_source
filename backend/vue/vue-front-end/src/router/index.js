@@ -2,9 +2,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-// Components 분리
-import login from '../components/Sign/login';
-import SignUp from '../components/Sign/SignUp';
+/* Components */
+import 
 
 Vue.use(VueRouter);
 
@@ -30,16 +29,7 @@ const routes = [
 			return import('../views/Mypage.vue');
 		},
 	},
-	// {
-	// 	path: '/login',
-	// 	name: 'login',
-	// 	component: login,
-	// },
-	// {
-	// 	path: '/signup',
-	// 	name: 'SignUp',
-	// 	component: SignUp,
-	// },
+
 ];
 
 const router = new VueRouter({
